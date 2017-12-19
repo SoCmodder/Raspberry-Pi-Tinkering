@@ -5,7 +5,7 @@ import time
 import atexit
 
 # create a default object, no changes to I2C address or frequency
-mh = Adafruit_MotorHAT(addr=0x70)
+mh = Adafruit_MotorHAT(addr=0x6F)
 
 myMotor = mh.getMotor(1)
 
