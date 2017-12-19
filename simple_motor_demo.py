@@ -26,6 +26,8 @@ for i in range(255):
 	myMotor.setSpeed(i)
 	time.sleep(0.01)
 
+mh.getMotor(3).run(Adafruit_MotorHAT.RELEASE)	
+
 # while (True):
 # 	print "Forward! "
 # 	myMotor.run(Adafruit_MotorHAT.FORWARD)
