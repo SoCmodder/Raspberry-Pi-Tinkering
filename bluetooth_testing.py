@@ -34,27 +34,12 @@ threads = []
 
 def altworker():
 	"""thread worker function"""
-	f = open("bt-activated-data-recording.txt","w") 
-	for i in range(0, 960):
-		f.write('======================================================================\n')
-		f.write('Timestamp: {:%Y-%m-%d %H:%M:%S}'.format(datetime.datetime.now()) + '\n')
-		f.write('Temp = {0:0.2f} *C'.format(sensor.read_temperature()) + '\n')
-		f.write('Pressure = {0:0.2f} Pa'.format(sensor.read_pressure()) + '\n')
-		f.write('Altitude = {0:0.2f} m'.format(sensor.read_altitude()) + '\n')
-		f.write('Sealevel Pressure = {0:0.2f} Pa'.format(sensor.read_sealevel_pressure()) + '\n')
-		f.write('======================================================================\n\n')
-		time.sleep(1)
-	#Save/Close the file
-	f.close()
-	client_socket.send("Finished Altitude Data Recording!\n")
+	client_socket.send("Running Function 1\n")
 	return 
 
 def vidworker():
 	"""thread worker function"""
-	camera.start_recording('bt-activated-video.h264')
-	camera.wait_recording(960)
-	camera.stop_recording()
-	client_socket.send("Finished Recording Video")
+	client_socket.send("Running Function 2\n")
 	return
 
 print "Accepted connection from ",address
@@ -62,12 +47,12 @@ while 1:
 	data = client_socket.recv(1024)
 	print "Received: %s" % data
 	if (data == "1"):    #if '1' is sent from the Android App, turn OFF the LED
-		client_socket.send("Recording Video!\n")
+		client_socket.send("1 Received\n")
 		t = threading.Thread(target=vidworker)
 		threads.append(t)
 		t.start()
 	if (data == "2"):
-		client_socket.send("Recording Data!\n")
+		client_socket.send("2 Received\n")
 		t2 = threading.Thread(target=altworker)
 		threads.append(t2)
 		t2.start()		
@@ -75,9 +60,6 @@ while 1:
 		print ("Quit")
 		client_socket.send("Quit command accepted: Shutting Down All Recording!")
 		break
-
-camera.close()
-f.close()
 
 client_socket.close()
 server_socket.close()
