@@ -9,7 +9,7 @@ mh = Adafruit_MotorHAT(addr=0x70)
 
 myMotor = mh.getMotor(1)
 
-while true:
+while (True):
 	print "Forward! "
 	myMotor.run(Adafruit_MotorHAT.FORWARD)
  
