@@ -7,7 +7,7 @@ import atexit
 # create a default object, no changes to I2C address or frequency
 mh = Adafruit_MotorHAT(addr=0x6F)
 
-myMotor = mh.getMotor(1)
+myMotor = mh.getMotor(3)
 
 while (True):
 	print "Forward! "
