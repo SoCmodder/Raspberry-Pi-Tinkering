@@ -18,16 +18,19 @@ mh = Adafruit_MotorHAT(addr=0x6F)
 
 myMotor = mh.getMotor(3)
 
-while (True):
-	print "Forward! "
-	myMotor.run(Adafruit_MotorHAT.FORWARD)
+print "Forward! "
+myMotor.run(Adafruit_MotorHAT.FORWARD)
  
-	print "\tSpeed up..."
-	for i in range(255):
-		myMotor.setSpeed(i)
-		time.sleep(0.01)
+print "\tSpeed up..."
+for i in range(255):
+	myMotor.setSpeed(i)
+	time.sleep(0.01)
+
+# while (True):
+# 	print "Forward! "
+# 	myMotor.run(Adafruit_MotorHAT.FORWARD)
  
-	print "\tSlow down..."
-	for i in reversed(range(255)):
-		myMotor.setSpeed(i)
-		time.sleep(0.01)
+# 	print "\tSpeed up..."
+# 	for i in range(255):
+# 		myMotor.setSpeed(i)
+# 		time.sleep(0.01)
